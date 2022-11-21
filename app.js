@@ -1,11 +1,15 @@
 const express = require('express')
-const app = express()
+const exphbs = require('express-handlebars')
 const PORT = 3000
 
-const exphbs = require('express-handlebars')
+require('./config/mongoose')
+
+const app = express()
 
 app.engine('handlebars', exphbs({defaultLayouts: 'main'}))
 app.set('view engine', 'handlebars')
+
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   res.render('index')
