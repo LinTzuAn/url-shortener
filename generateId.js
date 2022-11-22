@@ -1,3 +1,5 @@
+const idList = []
+
 function generateId () {
   const randomStrings = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   const temp = []
@@ -8,7 +10,13 @@ function generateId () {
     let index = Math.floor(Math.random() * randomStrings.length)
     result += ArrayofRandomStrings[index]
   }
-
+  
+  if (idList.includes(result)) {
+    generateId()
+  } else {
+    idList.push(result)
+  }
+  
   return result
 }
 

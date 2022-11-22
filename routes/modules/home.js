@@ -9,25 +9,36 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const input = req.body.input
-  let data = {
-    originalURL: `${input}` 
-  }
-  data.id = generateId()
-  shortenedURL = `http://localhost:3000/${data.id}`
-  Url.create(data)
-    .then(() => { 
-    res.render('index', {shortenedURL})
+
+  Url.find()
+  .lean()
+  .then(urls => {
+    const existingUrl = urls.find(
+      url => {return url.originalURL.includes(input)
     })
-    .catch(error => console.log(error))
+    if (existingUrl) {
+      shortenedURL = `http://localhost:3000/${existingUrl.id}`
+      return res.render('index', { shortenedURL })
+    } else {
+      let data = {originalURL: `${input}`}
+      data.id = generateId()
+      shortenedURL = `http://localhost:3000/${data.id}`
+      return Url.create(data)
+        .then(() => res.render('index', { shortenedURL }))
+        .catch(error => console.log(error))
+    }
+  })
+  .catch(error => console.log(error))
 })
 
 router.get('/:id', (req,res) => {
   const params = req.params.id
-  Url.find({id: params})
+  return Url.find({id: params})
     .lean()
     .then(item => {
       res.redirect(item[0].originalURL)
     })
     .catch(error => console.log(error))
 })
+
 module.exports = router

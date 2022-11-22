@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 const urlSchema = new Schema({
   originalURL: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   id: {
     type: String
