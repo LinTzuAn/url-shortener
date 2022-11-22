@@ -1,17 +1,15 @@
-function generateURL () {
+function generateId () {
   const randomStrings = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-  const arr = []
-  const arr2 = arr.concat(randomStrings.split(''))
+  const temp = []
+  const ArrayofRandomStrings = temp.concat(randomStrings.split(''))
   let result = ''
 
   for (i = 0; i < 5; i++){
     let index = Math.floor(Math.random() * randomStrings.length)
-    result += arr2[index]
+    result += ArrayofRandomStrings[index]
   }
 
   return result
 }
 
-console.log(generateURL())
-
-module.exports = generateURL
+module.exports = generateId
