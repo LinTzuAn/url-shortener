@@ -11,6 +11,7 @@
 
           {{#unless shortenedURL}}
             <form action="/" method="post">
+            {{!-- 若使用者沒有輸入內容，就按下了送出鈕，需要防止表單送出並提示使用者  --}}
               <input class="form-control mb-3" type="text" name="input" placeholder="Input URL here" required>
               <div class="d-flex justify-content-center">
                 <button class="btn btn-primary" type="submit">Shorten</button>
