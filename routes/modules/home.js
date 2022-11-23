@@ -2,7 +2,7 @@ const express = require('express')
 const generateId = require('../../generateId')
 const router = express.Router()
 const Url = require('../../models/url')
-const BASE_URL = 'http://localhost:3000/site/'
+const BASE_URL = 'http://localhost:3000/'
 
 router.get('/', (req, res) => {
   res.render('index')
