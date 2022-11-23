@@ -6,17 +6,15 @@ function generateId () {
   const ArrayofRandomStrings = temp.concat(randomStrings.split(''))
   let result = ''
 
-  for (i = 0; i < 5; i++){
-    let index = Math.floor(Math.random() * randomStrings.length)
+  for (let i = 0; i < 5; i++) {
+    const index = Math.floor(Math.random() * randomStrings.length)
     result += ArrayofRandomStrings[index]
   }
-  
   if (idList.includes(result)) {
     generateId()
   } else {
     idList.push(result)
   }
-  
   return result
 }
 

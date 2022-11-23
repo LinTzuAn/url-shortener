@@ -1,5 +1,4 @@
 const express = require('express')
-const generateId = require('../../generateId')
 const router = express.Router()
 const Url = require('../../models/url')
 
