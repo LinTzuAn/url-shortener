@@ -7,7 +7,11 @@ router.get('/:id', (req, res) => {
   return Url.find({ id: params })
     .lean()
     .then(item => {
-      res.redirect(item[0].originalURL)
+      if (!item[0]) {
+        return res.render('wrong')
+      } else {
+        res.redirect(item[0].originalURL)
+      }
     })
     .catch(error => console.log(error))
 })
